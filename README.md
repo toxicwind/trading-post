@@ -98,6 +98,8 @@ Three things accumulate across a session and compose into behavior: **memory** (
 
 **Soul files.** Identity, voice, hard limits, and HEXACO scores can live in a `SOUL.md` workspace. Its `memory/` directory is a markdown wiki (an `index.md` catalog plus `entities/`, `concepts/`, `log/` pages with `[[wikilinks]]`) that *is* the agent's long-term memory: markdown is the source of truth, the vector/graph index is rebuilt from it, and [`souledAgent()`](https://docs.agentos.sh/getting-started/high-level-api) wires it end to end. [Soul Files ->](https://docs.agentos.sh/features/soul-files)
 
+**Task market (emergent economy).** `src/market/` adds the missing economy on top of the emergent machinery: an oracle triages intake into biddable tasks (capability tags + executable acceptance criteria), bidders compete under a local bidding law (highest-eligible-bid-wins, earliest tiebreak), results face heterogeneous evidence-grounded verification, and settlement moves behavior-anchored reputation (+1 verified, -2 slash, floor 0 — keyed by tag x task-class, never by bidder name, because bidders are ephemeral). Append-only JSONL ledger (`task-open, bid, assign, result, verify, settle | slash, debate, petition`), upgrade petitions shaped to `SelfImprovementConfig` bounds, watchdog supervision, and fleet narration. See [src/market/README.md](src/market/README.md).
+
 ```ts
 import { souledAgent } from '@framers/agentos';
 
