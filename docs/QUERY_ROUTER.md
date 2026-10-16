@@ -144,7 +144,7 @@ The QueryRouter ships with **260 pre-built knowledge entries** that cover the en
 
 ### How It Works
 
-Platform knowledge is loaded from `knowledge/platform-corpus.json` inside the `@framers/agentos` package. During `init()`, these entries are converted to [`CorpusChunk`](https://github.com/framerslab/agentos/blob/master/src/orchestration/pipeline/query/types.ts) objects and appended to the user corpus. Both the vector index and the keyword fallback index cover platform entries, so they work regardless of whether an embedding API key is available.
+Platform knowledge is loaded from `knowledge/platform-corpus.json` inside the `@framers/agentos` package. During `init()`, these entries are converted to [`CorpusChunk`](https://github.com/framerslab/agentos/blob/master/src/orchestration/pipeline/query/types.ts) objects and appended to the architect corpus. Both the vector index and the keyword fallback index cover platform entries, so they work regardless of whether an embedding API key is available.
 
 The platform knowledge layer sits beneath your project documentation:
 
@@ -164,10 +164,10 @@ A key application of platform knowledge is **agentic credential setup**. The cor
 - **Gmail setup** (`faq:setup-gmail`): Step-by-step instructions for creating a Google Cloud project, enabling the Gmail API, downloading the `client_secret_*.json` file, and running the OAuth flow.
 - **General credential setup** (`faq:setup-credentials-general`): The universal pattern for helping users configure any extension — discover what's needed via `discover_capabilities`, find files via `shell_execute`, parse them via `file_read`, and persist credentials.
 - **Extension credentials reference** (`faq:extension-credentials`): Complete listing of what environment variables each extension requires (GITHUB_TOKEN, DISCORD_BOT_TOKEN, ELEVENLABS_API_KEY, etc.).
-- **File discovery** (`faq:find-credential-files`): How to locate downloaded credential files on the user's system (checking ~/Downloads, ~/Desktop, ~/.aws, ~/.ssh).
+- **File discovery** (`faq:find-credential-files`): How to locate downloaded credential files on the architect's system (checking ~/Downloads, ~/Desktop, ~/.aws, ~/.ssh).
 - **Connect reference** (`faq:connect-flow`): Reference for the OAuth-based connect flow with all supported services and the `--credentials` flag.
 
-When a user asks "help me set up Gmail" or "I downloaded a credentials file", the NL intent classifier routes to the connect flow, and the agent uses these knowledge entries combined with agentic tools (`shell_execute`, `file_read`) to guide the user through credential setup without any hard-coded logic in the CLI itself.
+When an architect asks "help me set up Gmail" or "I downloaded a credentials file", the NL intent classifier routes to the connect flow, and the agent uses these knowledge entries combined with agentic tools (`shell_execute`, `file_read`) to guide the architect through credential setup without any hard-coded logic in the CLI itself.
 
 ### Configuration
 

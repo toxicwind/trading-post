@@ -314,7 +314,7 @@ const writer = agency({
   provider: 'openai',
   model: 'gpt-4o-mini',
   agents: {
-    drafter: { instructions: 'Draft a paragraph based on the user input.' },
+    drafter: { instructions: 'Draft a paragraph based on the architect input.' },
   },
   hitl: {
     approvals: { beforeReturn: true },

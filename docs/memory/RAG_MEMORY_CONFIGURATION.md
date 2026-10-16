@@ -115,7 +115,7 @@ await memory.remember('User prefers dark mode');
 await memory.remember('Deploy by Friday', { type: 'prospective', tags: ['deadline'] });
 
 // Recall relevant memories
-const results = await memory.recall('what does the user prefer?');
+const results = await memory.recall('what does the architect prefer?');
 for (const m of results.memories) {
   console.log(m.content, m.retrievalScore);
 }
@@ -808,7 +808,7 @@ A [`ResearchBudgetTracker`](https://github.com/framerslab/agentos-extensions/blo
 Enabled by default. Before every chat turn, the classifier runs a fast LLM call with a structured prompt:
 
 ```
-You are a query complexity classifier. Given a user query, classify it
+You are a query complexity classifier. Given an architect query, classify it
 into ONE of these research depth tiers: none, quick, moderate, deep.
 
 Respond with ONLY a JSON object:

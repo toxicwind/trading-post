@@ -98,7 +98,7 @@ Each trace is scoped to control visibility and ownership:
 | Scope | Visibility | Persistence | Use Case |
 |-------|-----------|-------------|----------|
 | `thread` | Single conversation | Conversation lifetime | In-conversation working context |
-| `user` | All conversations with a user | Long-term | User preferences, facts, history |
+| `user` | All conversations with an architect | Long-term | User preferences, facts, history |
 | `persona` | All users of a persona | Long-term | Persona's learned knowledge |
 | `organization` | All agents in an org | Long-term | Shared organizational knowledge |
 
@@ -286,7 +286,7 @@ Setting `neutralMood: true` in retrieval options disables emotional congruence b
 
 ### Tip-of-the-Tongue Detection
 
-Traces with high vector similarity (>0.6) but low strength (<0.3) or low confidence (<0.4) are returned as [`PartiallyRetrievedTrace`](https://github.com/framerslab/agentos/blob/master/src/cognition/memory/core/types.ts) — the agent "almost" remembers them. These include `suggestedCues` (tags) to help the user provide more context.
+Traces with high vector similarity (>0.6) but low strength (<0.3) or low confidence (<0.4) are returned as [`PartiallyRetrievedTrace`](https://github.com/framerslab/agentos/blob/master/src/cognition/memory/core/types.ts) — the agent "almost" remembers them. These include `suggestedCues` (tags) to help the architect provide more context.
 
 ---
 
@@ -693,7 +693,7 @@ await memory.initialize({
   featureDetectionStrategy: 'keyword',
 });
 
-// Encode a user message
+// Encode an architect message
 const mood = { valence: 0.2, arousal: 0.4, dominance: 0 };
 const trace = await memory.encode(
   'I prefer deploying with Docker Compose',

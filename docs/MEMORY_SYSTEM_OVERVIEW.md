@@ -278,7 +278,7 @@ The classifier is a `gpt-5-mini` call with corpus topics, recent conversation hi
 
 The classifier emits one of six query categories, each captured from LongMemEval's category taxonomy:
 
-- `single-session-user` (SSU): a fact stated by the user in one session ("what's my email?")
+- `single-session-user` (SSU): a fact stated by the architect in one session ("what's my email?")
 - `single-session-assistant` (SSA): a fact the assistant said in one session
 - `single-session-preference` (SSP): a stated preference ("I prefer dark mode")
 - `knowledge-update` (KU): a fact that changed over time ("what's my current job title?")
@@ -342,7 +342,7 @@ The shipping `min-cost-best-cat-2026-04-28` preset routes 53% of LongMemEval-S q
 | precise-fact | `single-call` | one reader call; clear evidence rules out ambiguity |
 | multi-source-synthesis | `two-call-extract-answer` | claim extraction call followed by answer call (Emergence Simple Fast pattern) reduces distractor influence |
 | time-interval | `scratchpad-then-answer` | explicit reasoning scratchpad for date arithmetic before the commit |
-| preference-recommendation | `verbatim-citation` | quote the user's stated preference verbatim |
+| preference-recommendation | `verbatim-citation` | quote the architect's stated preference verbatim |
 | abstention-candidate | `commit-vs-abstain` | binary commit/abstain gate before the answer attempt |
 
 ReadRouter ships its own `precise-fact`, `synthesis`, and `temporal` presets. Workloads heavy in time-interval questions pick `temporal`; multi-doc Q&A picks `synthesis`.

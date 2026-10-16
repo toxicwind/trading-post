@@ -5,7 +5,7 @@ sidebar_position: 8
 
 # Streaming voice pipeline
 
-A voice agent that talks back is straightforward to build if you don't care that it interrupts the user, never knows when they've stopped speaking, can't recover when the network blips for half a second, and will keep happily generating into a phone that the user already hung up. A voice agent you actually want to use has to handle all of those, which is why the voice path through AgentOS is its own subsystem rather than a thin wrapper over text generation. Turn-taking is a first-class concern. Barge-in is a first-class concern. The fact that audio chunks arrive on a different schedule than text tokens is a first-class concern. The state machine has six states because conversation has at least six distinct things going on at any moment.
+A voice agent that talks back is straightforward to build if you don't care that it interrupts the architect, never knows when they've stopped speaking, can't recover when the network blips for half a second, and will keep happily generating into a phone that the architect already hung up. A voice agent you actually want to use has to handle all of those, which is why the voice path through AgentOS is its own subsystem rather than a thin wrapper over text generation. Turn-taking is a first-class concern. Barge-in is a first-class concern. The fact that audio chunks arrive on a different schedule than text tokens is a first-class concern. The state machine has six states because conversation has at least six distinct things going on at any moment.
 
 This page is the architectural map. The configuration surface is at the bottom; the conceptual model and the wiring sit on top.
 
@@ -108,7 +108,7 @@ CLI flags override values configured in code.
 |-----------|---------|
 | [`IStreamTransport`](https://github.com/framerslab/agentos/blob/master/src/io/voice-pipeline/types.ts) | Bidirectional audio pipe (WebSocket now, WebRTC later) |
 | [`IStreamingSTT`](https://github.com/framerslab/agentos/blob/master/src/io/voice-pipeline/types.ts) | Real-time speech-to-text with interim results |
-| [`IEndpointDetector`](https://github.com/framerslab/agentos/blob/master/src/io/voice-pipeline/types.ts) | Turn-taking: decides when the user is done speaking |
+| [`IEndpointDetector`](https://github.com/framerslab/agentos/blob/master/src/io/voice-pipeline/types.ts) | Turn-taking: decides when the architect is done speaking |
 | [`IDiarizationEngine`](https://github.com/framerslab/agentos/blob/master/src/io/voice-pipeline/types.ts) | Speaker identification and labeling |
 | [`IStreamingTTS`](https://github.com/framerslab/agentos/blob/master/src/io/voice-pipeline/types.ts) | Token-stream to audio synthesis |
 | [`IBargeinHandler`](https://github.com/framerslab/agentos/blob/master/src/io/voice-pipeline/types.ts) | Handles user interruption during agent speech |
@@ -269,7 +269,7 @@ const callFlow = workflow('phone-intake')
 
 The [`VoiceTransportAdapter`](https://github.com/framerslab/agentos/blob/master/src/orchestration/runtime/VoiceTransportAdapter.ts) bridges the graph I/O cycle:
 
-- `getNodeInput(nodeId)` — waits for the user's next speech turn (resolves on `turn_complete`).
+- `getNodeInput(nodeId)` — waits for the architect's next speech turn (resolves on `turn_complete`).
 - `deliverNodeOutput(nodeId, text)` — sends the node's response to TTS and emits a `voice_audio` graph event.
 - `init(state)` — injects `state.scratch.voiceTransport` so voice nodes can access the transport.
 - `dispose()` — emits `voice_session ended` and tears down the adapter.

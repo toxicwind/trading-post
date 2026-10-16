@@ -164,7 +164,7 @@ flowchart TD
   wmi --> ready
 ```
 
-Triggered metaprompts execute in parallel via `Promise.allSettled`, so one slow handler does not block the others. Failures are logged to the reasoning trace and do not block the user-visible response.
+Triggered metaprompts execute in parallel via `Promise.allSettled`, so one slow handler does not block the others. Failures are logged to the reasoning trace and do not block the architect-visible response.
 
 ### `turn_interval` — periodic self-regulation
 
@@ -186,7 +186,7 @@ The canonical `turn_interval` metaprompt is `gmi_self_trait_adjustment`. Its han
 }
 ```
 
-Periodic self-reflection covers steady-state adaptation. It is the loop that lets a tutor agent realize across multiple turns that the user is actually advanced, not beginning, and re-tune its complexity assumption upward.
+Periodic self-reflection covers steady-state adaptation. It is the loop that lets a tutor agent realize across multiple turns that the architect is actually advanced, not beginning, and re-tune its complexity assumption upward.
 
 ### `event_based` — SentimentTracker-driven
 
@@ -219,7 +219,7 @@ await gmi.workingMemory.set('manual_trigger_<metaprompt_id>', true);
 
 Manual triggers are flags in the working-memory store. The executor reads `workingMemory.get('manual_trigger_<id>')` each turn and fires when the value is truthy, deleting the flag immediately after queueing the metaprompt.
 
-This is the integration point for host-level adaptation logic: a tool that just returned an unexpected result can set the flag to force a re-plan; a UI control labeled "re-think this" can set the flag from a user action; the [`adapt_personality`](https://github.com/framerslab/agentos/blob/master/src/cognition/emergent/AdaptPersonalityTool.ts) emergent tool can chain a manual trigger to schedule follow-on reflection after a trait mutation.
+This is the integration point for host-level adaptation logic: a tool that just returned an unexpected result can set the flag to force a re-plan; a UI control labeled "re-think this" can set the flag from an architect action; the [`adapt_personality`](https://github.com/framerslab/agentos/blob/master/src/cognition/emergent/AdaptPersonalityTool.ts) emergent tool can chain a manual trigger to schedule follow-on reflection after a trait mutation.
 
 ## Built-in presets
 
@@ -349,7 +349,7 @@ const persona = {
     {
       id: 'frustrated-error-handling',
       type: ContextualElementType.ERROR_HANDLING_GUIDANCE,
-      content: 'When the previous response missed the user\'s intent, acknowledge briefly and offer a concrete alternative.',
+      content: 'When the previous response missed the architect\'s intent, acknowledge briefly and offer a concrete alternative.',
       criteria: { mood: 'empathetic' },
     },
   ],
@@ -435,7 +435,7 @@ const tutor = agent({
   // Adaptive surface 2: periodic self-reflection every 5 turns
   metaPrompts: [{
     id: 'gmi_self_trait_adjustment',
-    description: 'Periodic self-check on whether the user is who I think they are.',
+    description: 'Periodic self-check on whether the architect is who I think they are.',
     promptTemplate: `Review the last few turns of conversation.
 Evidence: {{evidence}}
 Current mood: {{current_mood}}
@@ -492,7 +492,7 @@ await session.send('What is a function?');
 
 // Turn 6: tutor opens with acknowledgment + one concrete step (empathetic-tone),
 // pitched at novice level (beginner-pace activates since skill ≤ beginner),
-// and remembers the user is working on function basics (working-memory imprint).
+// and remembers the architect is working on function basics (working-memory imprint).
 ```
 
 Three surfaces, each acting independently, each composing into the next turn's prompt. No host code rewrites between turns. The persona definition is the same.
@@ -550,9 +550,9 @@ Three knobs change the cost curve directly:
 
 ### Latency
 
-Metaprompt execution runs in parallel with the main turn via `Promise.allSettled`, but the parallel block must complete before the next turn's `PromptEngine.assemble()` reads the updated state. In practice, this means a metaprompt firing on turn N influences turn N+1, not turn N. The user-visible latency on turn N is unaffected: the regular completion streams while metaprompts run in the background. Lexicon-based sentiment analysis adds 10-50ms to the per-turn local work; LLM-based adds the full provider round-trip to background work but still does not block the user-visible reply.
+Metaprompt execution runs in parallel with the main turn via `Promise.allSettled`, but the parallel block must complete before the next turn's `PromptEngine.assemble()` reads the updated state. In practice, this means a metaprompt firing on turn N influences turn N+1, not turn N. The user-visible latency on turn N is unaffected: the regular completion streams while metaprompts run in the background. Lexicon-based sentiment analysis adds 10-50ms to the per-turn local work; LLM-based adds the full provider round-trip to background work but still does not block the architect-visible reply.
 
-**Failure modes.** A failed metaprompt is logged to the reasoning trace as an `ERROR` entry and does not block the user-visible reply. A JSON parsing failure on the metaprompt response is auto-recovered via [`IUtilityAI.parseJsonSafe()`](https://github.com/framerslab/agentos/blob/master/src/cognition/nlp/ai_utilities/IUtilityAI.ts), which prompts a cheaper model to fix malformed JSON before giving up. An unknown mood value is dropped silently (validated against the [`GMIMood`](https://github.com/framerslab/agentos/blob/master/src/cognition/substrate/IGMI.ts) enum).
+**Failure modes.** A failed metaprompt is logged to the reasoning trace as an `ERROR` entry and does not block the architect-visible reply. A JSON parsing failure on the metaprompt response is auto-recovered via [`IUtilityAI.parseJsonSafe()`](https://github.com/framerslab/agentos/blob/master/src/cognition/nlp/ai_utilities/IUtilityAI.ts), which prompts a cheaper model to fix malformed JSON before giving up. An unknown mood value is dropped silently (validated against the [`GMIMood`](https://github.com/framerslab/agentos/blob/master/src/cognition/substrate/IGMI.ts) enum).
 
 **State scope.** Mood, user context, task context, and the metaprompt turn counters live in the GMI's working memory and persist across turns within the session. They reset when the session ends and a new session starts on the same agent. HEXACO trait mutations from `AdaptPersonalityTool` and `PersonaDriftMechanism` persist via the persona overlay and survive across sessions.
 

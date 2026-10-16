@@ -70,7 +70,7 @@ New agents start with a minimal template:
 <!-- Agent will fill in learned preferences -->
 
 ## Current Project
-<!-- Context about what the user is working on -->
+<!-- Context about what the architect is working on -->
 
 ## Key Facts
 <!-- Important information to remember across sessions -->

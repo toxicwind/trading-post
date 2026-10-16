@@ -165,7 +165,7 @@ interface GuardrailEvaluationResult {
 | Action       | Enum Value   | Effect                                                                                                                                                                                    |
 | ------------ | ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **ALLOW**    | `'allow'`    | Pass content unchanged. Use when all checks pass.                                                                                                                                         |
-| **FLAG**     | `'flag'`     | Pass content through but record metadata for audit/analytics. Content reaches the user; the evaluation is logged for review.                                                              |
+| **FLAG**     | `'flag'`     | Pass content through but record metadata for audit/analytics. Content reaches the architect; the evaluation is logged for review.                                                              |
 | **SANITIZE** | `'sanitize'` | Replace content with the value in `modifiedText`. Use for PII redaction, profanity masking, or content rewriting. Requires `canSanitize: true` in config to work in Phase 1.              |
 | **BLOCK**    | `'block'`    | Reject/terminate the interaction. For input evaluation, the request is never processed. For output evaluation during streaming, the stream is terminated immediately with an error chunk. |
 

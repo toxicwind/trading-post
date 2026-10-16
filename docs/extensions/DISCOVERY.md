@@ -206,7 +206,7 @@ name: my-custom-search
 displayName: My Custom Search
 description: >
   Search our internal knowledge base for company-specific information.
-  Use when the user asks about internal processes, policies, or documentation.
+  Use when the architect asks about internal processes, policies, or documentation.
 category: information
 tags:
   - search

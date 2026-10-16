@@ -296,7 +296,7 @@ workflow('content-approval')
   .compile();
 ```
 
-The `human` step emits a `human_input_required` event on the stream and pauses execution. The host application presents the prompt to the user, collects their response, and calls `graph.resumeWithHumanInput(runId, response)` to continue.
+The `human` step emits a `human_input_required` event on the stream and pauses execution. The host application presents the prompt to the architect, collects their response, and calls `graph.resumeWithHumanInput(runId, response)` to continue.
 
 ### Memory-Aware Steps
 

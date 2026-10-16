@@ -16,7 +16,7 @@ class CLISubprocessError extends Error {
   /** The binary that failed (e.g. 'claude', 'gemini', 'ffmpeg'). */
   readonly binaryName: string;
 
-  /** Human-readable fix instructions shown to the user. */
+  /** Human-readable fix instructions shown to the architect. */
   readonly guidance: string;
 
   /** Whether the caller can retry or fall back. */
@@ -34,7 +34,7 @@ new CLISubprocessError(
   message: string,        // human-readable error description
   code: string,           // error code string (use CLI_ERROR constants or your own)
   binaryName: string,     // the CLI binary that failed
-  guidance: string,       // actionable fix instructions shown to the user
+  guidance: string,       // actionable fix instructions shown to the architect
   recoverable?: boolean,  // true if the caller should attempt retry/fallback (default false)
   details?: unknown,      // optional underlying error or extra context
 )
@@ -140,7 +140,7 @@ import { CLI_ERROR } from '@framers/agentos/sandbox/subprocess';
 | Recoverable | No |
 | Description | Permission denied (EACCES). The binary or a resource it needs is not accessible. |
 | Common Cause | The binary lacks execute permissions. The target file/directory lacks read/write permissions. The process is running as a restricted user. |
-| How to Fix | Grant appropriate permissions (`chmod`). Run as a user with sufficient privileges. Check filesystem ACLs and ownership. |
+| How to Fix | Grant appropriate permissions (`chmod`). Run as an architect with sufficient privileges. Check filesystem ACLs and ownership. |
 
 ### CONTEXT_TOO_LONG
 

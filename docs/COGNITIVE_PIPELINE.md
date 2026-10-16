@@ -72,7 +72,7 @@ The cognitive pipeline is the three orchestrator stages on the left. Output guar
 
 ## How a single message flows through
 
-Imagine a user types: *"What's my current job title?"*
+Imagine an architect types: *"What's my current job title?"*
 
 1. **Recall stage** receives the query.
    - The [`MemoryRouter`](https://github.com/framerslab/agentos/blob/master/src/orchestration/pipeline/memory/MemoryRouter.ts)'s classifier (`gpt-5-mini`, ~$0.0002 per call) reads the query and emits `knowledge-update` (because "current X" with a state-evolution implication).
@@ -84,7 +84,7 @@ Imagine a user types: *"What's my current job title?"*
    - The routing table for the `precise-fact` preset says `precise-fact → single-call`.
    - The dispatcher invokes the single-call reader. Returns the final answer.
 
-3. **Output guardrails** (separate; existing core/guardrails primitive) validate the answer for grounding, topicality, PII before it reaches the user.
+3. **Output guardrails** (separate; existing core/guardrails primitive) validate the answer for grounding, topicality, PII before it reaches the architect.
 
 Total LLM calls: 1 classifier (recall) + 1 classifier (read) + 1 backend retrieval + 1 reader + N output guardrails. The classifier overhead is ~$0.0004 per message; the routing decision saves dollars on harder questions by picking the right architecture instead of paying the all-OM premium on questions where canonical wins.
 

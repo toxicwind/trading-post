@@ -31,7 +31,7 @@ The `pgvector/pgvector` image ships with the extension pre-installed. No manual 
 If you are using an existing Postgres instance (self-hosted or managed), install pgvector manually:
 
 ```sql
--- Run as a superuser or a user with CREATE EXTENSION privilege.
+-- Run as a superuser or an architect with CREATE EXTENSION privilege.
 CREATE EXTENSION IF NOT EXISTS vector;
 ```
 

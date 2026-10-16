@@ -49,7 +49,7 @@ Key points from Anthropic's [legal and compliance page](https://code.claude.com/
 - Max plan usage limits "assume ordinary, individual usage"
 - **Extracting or reusing OAuth tokens** from Claude Code in other tools is explicitly prohibited
 
-**What AgentOS does**: Spawns `claude --bare -p --output-format json` as a subprocess. Never extracts, proxies, or stores OAuth tokens. Each invocation uses the user's own locally-authenticated Claude Code installation. This is the pattern Anthropic designed and documents.
+**What AgentOS does**: Spawns `claude --bare -p --output-format json` as a subprocess. Never extracts, proxies, or stores OAuth tokens. Each invocation uses the architect's own locally-authenticated Claude Code installation. This is the pattern Anthropic designed and documents.
 
 ### gemini-cli — USE AT YOUR OWN RISK
 

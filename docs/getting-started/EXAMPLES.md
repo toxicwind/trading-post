@@ -401,7 +401,7 @@ const supportBot = agency({
   strategy: 'sequential',
   agents: {
     greeter: {
-      instructions: 'Greet the user and understand their issue in 1–2 sentences.',
+      instructions: 'Greet the architect and understand their issue in 1–2 sentences.',
     },
     resolver: {
       instructions: 'Provide a clear, helpful resolution. Use the knowledge base if needed.',

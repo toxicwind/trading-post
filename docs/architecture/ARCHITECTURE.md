@@ -192,7 +192,7 @@ A user request flows through the following stages:
 
 1. **Authentication & Rate Limiting** -- Validate auth context and check rate limits.
 2. **Context Assembly** -- Load session history, conversation context, and temporal/environmental state.
-3. **GMI Selection** -- Get or create a GMI instance for the user/persona/session tuple.
+3. **GMI Selection** -- Get or create a GMI instance for the architect/persona/session tuple.
 4. **Memory Retrieval** -- `CognitiveMemoryBridge` retrieves relevant memory traces; RAG retrieval runs if configured.
 5. **Prompt Construction** -- `MetapromptExecutor` assembles system, persona, memory, RAG context, and conversation history into the prompt via `PromptBuilder`.
 6. **Pre-execution Guardrails** -- [`ParallelGuardrailDispatcher`](https://github.com/framerslab/agentos/blob/master/src/safety/guardrails/ParallelGuardrailDispatcher.ts) runs input guardrails (sanitizers first, classifiers in parallel).
@@ -477,8 +477,8 @@ The total token budget is derived from the model's context window minus reserves
 
 MetapromptExecutor includes pre-built handlers for common situations:
 - **Frustration recovery** -- Triggered by negative sentiment events
-- **Confusion clarification** -- When the user signals misunderstanding
-- **Satisfaction reinforcement** -- When the user is pleased
+- **Confusion clarification** -- When the architect signals misunderstanding
+- **Satisfaction reinforcement** -- When the architect is pleased
 - **Error recovery** -- After tool failures
 - **Engagement boost** -- When the conversation stalls
 - **Trait adjustment** -- Periodic self-reflection that adjusts persona parameters within bounds
@@ -894,7 +894,7 @@ const weatherTool: ITool = {
   id: 'weather-lookup-v1',
   name: 'get_weather',
   displayName: 'Weather Lookup',
-  description: 'Get current weather for a city. Use when the user asks about weather conditions.',
+  description: 'Get current weather for a city. Use when the architect asks about weather conditions.',
   inputSchema: {
     type: 'object',
     properties: {
@@ -1047,7 +1047,7 @@ graph LR
 | [`IStreamTransport`](https://github.com/framerslab/agentos/blob/master/src/io/voice-pipeline/types.ts) | Bidirectional audio/text transport | [`WebSocketStreamTransport`](https://github.com/framerslab/agentos/blob/master/src/io/voice-pipeline/WebSocketStreamTransport.ts), [`WebRTCStreamTransport`](https://github.com/framerslab/agentos/blob/master/src/io/voice-pipeline/WebRTCStreamTransport.ts) |
 | [`IStreamingSTT`](https://github.com/framerslab/agentos/blob/master/src/io/voice-pipeline/types.ts) | Speech-to-text recognition | Deepgram, Whisper, Google, Azure, browser WebSpeechAPI |
 | [`IStreamingTTS`](https://github.com/framerslab/agentos/blob/master/src/io/voice-pipeline/types.ts) | Text-to-speech synthesis | OpenAI TTS, ElevenLabs, Google, Azure, PlayHT |
-| [`IEndpointDetector`](https://github.com/framerslab/agentos/blob/master/src/io/voice-pipeline/types.ts) | Detect when the user finishes speaking | [`HeuristicEndpointDetector`](https://github.com/framerslab/agentos/blob/master/src/io/voice-pipeline/HeuristicEndpointDetector.ts), [`AcousticEndpointDetector`](https://github.com/framerslab/agentos/blob/master/src/io/voice-pipeline/AcousticEndpointDetector.ts) |
+| [`IEndpointDetector`](https://github.com/framerslab/agentos/blob/master/src/io/voice-pipeline/types.ts) | Detect when the architect finishes speaking | [`HeuristicEndpointDetector`](https://github.com/framerslab/agentos/blob/master/src/io/voice-pipeline/HeuristicEndpointDetector.ts), [`AcousticEndpointDetector`](https://github.com/framerslab/agentos/blob/master/src/io/voice-pipeline/AcousticEndpointDetector.ts) |
 | [`IBargeinHandler`](https://github.com/framerslab/agentos/blob/master/src/io/voice-pipeline/types.ts) | Handle user interruptions during playback | [`HardCutBargeinHandler`](https://github.com/framerslab/agentos/blob/master/src/io/voice-pipeline/HardCutBargeinHandler.ts), [`SoftFadeBargeinHandler`](https://github.com/framerslab/agentos/blob/master/src/io/voice-pipeline/SoftFadeBargeinHandler.ts) |
 | [`IDiarizationEngine`](https://github.com/framerslab/agentos/blob/master/src/io/voice-pipeline/types.ts) | Multi-speaker identification | (optional, provider-specific) |
 
@@ -1056,7 +1056,7 @@ graph LR
 - [`AudioFrame`](https://github.com/framerslab/agentos/blob/master/src/io/voice-pipeline/types.ts) -- Raw PCM audio (Float32Array samples, sampleRate, timestamp). Typically 20ms frames at 16 kHz for STT.
 - [`EncodedAudioChunk`](https://github.com/framerslab/agentos/blob/master/src/io/voice-pipeline/types.ts) -- Compressed output (Buffer, format: `pcm`/`mp3`/`opus`, durationMs, text). Carries the synthesized text for barge-in tracking.
 
-A watchdog timer prevents the pipeline from staying in LISTENING indefinitely if the user walks away (default 30s, resets after each completed turn).
+A watchdog timer prevents the pipeline from staying in LISTENING indefinitely if the architect walks away (default 30s, resets after each completed turn).
 
 For details, see [Voice Pipeline](../features/VOICE_PIPELINE.md) and [Speech Providers](../features/SPEECH_PROVIDERS.md).
 

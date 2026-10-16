@@ -244,7 +244,7 @@ Any domain works. Mars colonies, submarine habitats, space stations, medieval ki
 
 The hosted demo uses three layered guards so public access stays affordable:
 
-1. **Demo caps** when `PARACOSM_HOSTED_DEMO=true`: 6 turns (configurable), 30 colonists, 3 active departments, cheapest model tier. Settings UI locks the capped inputs and unlocks the moment a user pastes their own API key.
+1. **Demo caps** when `PARACOSM_HOSTED_DEMO=true`: 6 turns (configurable), 30 colonists, 3 active departments, cheapest model tier. Settings UI locks the capped inputs and unlocks the moment an architect pastes their own API key.
 2. **Per-IP rate limit**: one simulation per IP per day for demo-mode requests, JSON-persisted across restarts.
 3. **Abort gates**: when all SSE clients disconnect for longer than 1.5 seconds, an AbortController fires and the runtime checks it before every LLM call in the turn. At most one in-flight call completes after a tab closes.
 

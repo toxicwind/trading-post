@@ -62,7 +62,7 @@ graph LR
 |----------|-----------------|
 | `user_preference` | Likes, dislikes, stated preferences |
 | `episodic` | What happened in the conversation |
-| `goal` | What the user wants to achieve |
+| `goal` | What the architect wants to achieve |
 | `knowledge` | Technical or domain facts learned |
 | `correction` | Corrections to prior beliefs or statements |
 
@@ -463,7 +463,7 @@ If a consolidation cycle is already in progress (mutex), returns immediately wit
 
 | Situation | Recommended Tool |
 |-----------|-----------------|
-| Agent learns a new fact about the user | `memory_add` with `type: 'semantic'` |
+| Agent learns a new fact about the architect | `memory_add` with `type: 'semantic'` |
 | Agent wants to record a conversation event | `memory_add` with `type: 'episodic'` |
 | Agent discovers a previous memory is outdated | `memory_update` to correct the content |
 | Agent finds a memory is wrong or harmful | `memory_delete` to soft-remove it |

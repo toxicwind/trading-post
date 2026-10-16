@@ -179,7 +179,7 @@ Fields **not** embedded: `fullSchema`, `fullContent`, `requiredSecrets` — thes
 3. If a neighbor is not in results but has `DEPENDS_ON` or `COMPOSED_WITH`, pull it in: `score = parentScore * graphBoostFactor * edgeWeight`.
 4. Re-sort by score descending.
 
-If a user asks about GitHub issues and `skill:github` ranks high, `tool:cli-executor` (its dependency) gets pulled in even without a direct query match.
+If an architect asks about GitHub issues and `skill:github` ranks high, `tool:cli-executor` (its dependency) gets pulled in even without a direct query match.
 
 ---
 

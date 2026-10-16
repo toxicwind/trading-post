@@ -76,7 +76,7 @@ import type { ScoredTrace } from '@framers/agentos/memory';
 
 // Stand-ins. Replace `openaiAdapter` with whatever LLM adapter your runtime
 // exposes; replace `memory` / `omV10` / `omV11` / `query` with the real
-// memory backends and the user query string.
+// memory backends and the architect query string.
 declare const openaiAdapter: any;
 declare const memory: any;
 declare const omV10: any;
