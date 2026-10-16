@@ -69,7 +69,7 @@ here. `src/cognition/marketplace/` is AgentOS's extension store, not the task
 market — the task economy lives in `src/market/` by design.
 
 **Weaver** 🐦 — the oracle. The only persistent identity in the market, running
-as a first-class OpenFang agent (`sovereign/agents/weaver/`). Everything else
+as a first-class OpenFang agent (`estate-scripts/agents/weaver/`). Everything else
 is an ephemeral bidder with a number, not a name.
 
 ## Reputation law

@@ -163,10 +163,10 @@ Research the real psychology of long-term isolation and decide how to address th
 Counter-arguments from Earth-loyalists:
 - Colony depends on Earth for advanced electronics, medical equipment, replacement parts
 - Independence could trigger Earth funding withdrawal
-- No legal framework for extraterrestrial sovereignty exists
+- No legal framework for extraterrestrial estate-scriptsty exists
 
 Research the governance challenges of off-world colonies and decide your position.`,
-    researchKeywords: ['space colony governance self-governance', 'communication delay governance challenges', 'colonial independence historical parallels', 'space law extraterrestrial sovereignty'],
+    researchKeywords: ['space colony governance self-governance', 'communication delay governance challenges', 'colonial independence historical parallels', 'space law extraterrestrial estate-scriptsty'],
     snapshotHints: {},
     riskyOption: "independence",
     riskSuccessProbability: 0.50,

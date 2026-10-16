@@ -108,7 +108,7 @@ export const RESEARCH_PACKETS: Record<number, CrisisResearchPacket> = {
     ],
     counterpoints: [],
     departmentNotes: {
-      governance: 'No legal framework for extraterrestrial sovereignty exists in current international law.',
+      governance: 'No legal framework for extraterrestrial estate-scriptsty exists in current international law.',
     },
   },
   10: {

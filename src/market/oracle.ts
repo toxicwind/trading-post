@@ -38,7 +38,7 @@ export interface ShapedContract {
  */
 export type ContractBuilder = (shaped: ShapedContract) => TaskContract;
 
-const DEFAULT_WORKDIR_ROOT = '/home/toxic/sovereign/hatch/emergent-market/work';
+const DEFAULT_WORKDIR_ROOT = '/home/toxic/estate-scripts/hatch/emergent-market/work';
 
 /** The acceptance marker for heuristic contracts that need refinement. */
 export const TBD_ACCEPT = 'TBD by oracle — refine before market';
