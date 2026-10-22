@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# trading-post — primary operation: build the AgentOS TS framework (dist/).
+# Most package gates (verify:exports, typecheck via full surface) require the
+# built `dist/`. This repo is a vendored fork (framerslab/agentos lineage).
+#
+# Usage:
+#   bin/run           # build dist/ (npm run build)
+#   bin/run check     # fast structural + manifest gate
+set -euo pipefail
+cd "$(dirname "$0")/.."
+
+if [ "${1:-}" = "check" ]; then
+  exec ./bin/check
+fi
+
+[ -f package.json ] || { echo "FAIL: package.json missing"; exit 1; }
+NPM="${NPM:-npm}"
+"$NPM" run build
