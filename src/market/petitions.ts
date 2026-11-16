@@ -171,7 +171,7 @@ export function petitionToContract(
       `implementation stays within the declared cost bound ("${petition.cost}")`,
       `no agent surface outside scope "${scope}" is modified`,
     ],
-    workdir: `/home/toxic/estate-scripts/hatch/emergent-market/work/petition-${petition.id.slice(-8)}`,
+    workdir: `/home/toxic/pens/Pens-scripts/hatch/emergent-market/work/petition-${petition.id.slice(-8)}`,
     priority: 'normal',
   };
 }
