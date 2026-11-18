@@ -1,0 +1,1 @@
+import{BaseRecognitionService}from"../core/base-recognition.service.js";import{NodePlatformProvider}from"./platform.node.js";export class RecognitionService extends BaseRecognitionService{constructor(session,options={},debugging={},engine="opencv"){super(new NodePlatformProvider,session,options,debugging,engine)}}

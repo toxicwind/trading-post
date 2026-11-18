@@ -1,0 +1,1 @@
+import{BaseDetectionService}from"../core/base-detection.service.js";import{NodePlatformProvider}from"./platform.node.js";export class DetectionService extends BaseDetectionService{constructor(session,options={},debugging={},engine="opencv"){super(new NodePlatformProvider,session,options,debugging,engine)}}

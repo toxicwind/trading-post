@@ -1,0 +1,1 @@
+import{cv}from"../cv-provider.js";import{registry}from"../pipeline/registry.js";function defaultOptions(){return{lower:50,upper:150}}export function canny(img,options){let imgCanny=new cv.Mat;cv.Canny(img,imgCanny,options.lower,options.upper);img.delete();return{img:imgCanny,width:imgCanny.cols,height:imgCanny.rows}}registry.register("canny",canny,defaultOptions);
